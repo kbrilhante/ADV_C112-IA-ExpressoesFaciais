@@ -33,6 +33,14 @@ function modelReady() {
     divControles.style.display = "block";
 }
 
+function speak(previsao1, previsao2) {
+    const synth = speechSynthesis;
+    const frase1 = "a primeira previsão é " + previsao1;
+    const frase2 = " e a segunta previsão é " + previsao2;
+    const utterThis = new SpeechSynthesisUtterance(frase1 + frase2);
+    synth.speak(utterThis);
+}
+
 function begin() {
     Webcam.snap(dataURI => {
         const ibagem = document.createElement("img");
@@ -45,14 +53,6 @@ function begin() {
     });
 }
 
-function speak(previsao1, previsao2) {
-    const synth = speechSynthesis;
-    const frase1 = "a primeira previsão é " + previsao1;
-    const frase2 = " e a segunta previsão é " + previsao2;
-    const utterThis = new SpeechSynthesisUtterance(frase1 + frase2);
-    synth.speak(utterThis);
-}
-
 function gotResult(error, result) {
     if (error) {
         console.error(error);
@@ -61,7 +61,7 @@ function gotResult(error, result) {
         const resultado1 =  result[0].label;
         const resultado2 =  result[1].label;
         console.log(resultado1, resultado2);
-        // speak(resultado1, resultado2);
+        speak(resultado1, resultado2);
         preenchePrevisao(resultado1, divEmotion1, divEmoji1);
         preenchePrevisao(resultado2, divEmotion2, divEmoji2);
     }
