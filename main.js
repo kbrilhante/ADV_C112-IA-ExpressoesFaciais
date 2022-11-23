@@ -13,12 +13,6 @@ const modelURL = URL + "model.json";
 const metadataURL = URL + "metadata.json";
 const classifier = ml5.imageClassifier(modelURL, modelReady);
 
-// var isModelReady = false;
-// var isLabelsLoaded = false;
-
-
-// var emocoes = []
-
 const emocoes = {
     "feliz": "&#128522;",
     "triste": "&#128532;",
@@ -33,29 +27,11 @@ Webcam.set({
 })
 
 Webcam.attach(divCam);
-// loadEmotions();
 
 function modelReady() {
     console.log('Model Ready');
-    // isModelReady = true;
-    // showControls();
     divControles.style.display = "block";
 }
-
-// async function loadEmotions() {
-//     const request = new Request(metadataURL);
-//     const response = await fetch(request);
-//     const data = await response.json();
-//     emocoes = data.labels;
-//     isLabelsLoaded = true;
-//     showControls();
-// }
-
-// function showControls() {
-//     if(isLabelsLoaded && isModelReady) {
-//         divControles.style.display = "block";
-//     }
-// }
 
 function begin() {
     Webcam.snap(dataURI => {
